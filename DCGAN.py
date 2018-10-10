@@ -115,10 +115,6 @@ def main(job_dir,**args):
                 loss_g_, _ = sess.run([G_loss, G_optim], {z: z_, x: x_, isTraining: True})
                 G_losses.append(loss_g_)
 
-            #epoch_end_time = time.time()
-            #per_epoch_ptime = epoch_end_time - epoch_start_time
-            #print('[%d/%d] - ptime: %.2f loss_d: %.3f, loss_g: %.3f' % ((epoch + 1), epochs, per_epoch_ptime, np.mean(D_losses), np.mean(G_losses)))
-            #fixed_p = root + 'Fixed_results/' + model + str(epoch + 1) + '.png'
             
             saver.save(sess, './modelDCGAN'+str(epoch)+'.ckpt')
             with file_io.FileIO('./modelDCGAN'+str(epoch)+'.ckpt.data-00000-of-00001', mode='rb') as input_f :
